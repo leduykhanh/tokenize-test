@@ -39,10 +39,18 @@ import Dropdowns from 'components/Dropdowns';
       <div>
         { /*<h2>{this.props.login.username}</h2> */}
           <h1>Test</h1>
-          <div className="border padding-10">
-            <CryptoSelect label="Units" currency="BTC" />
-            <CryptoSelect label="Bid" currency="SGD" />
+          <div className="row">
+            <div className="border padding-10 col-sm-6 offset-sm-3">
+              <CryptoSelect label="Units" currency="BTC" />
+              <CryptoSelect label="Bid" currency="SGD" />
+              <div className="text-right">
+                <button type="button" className="btn btn-info">
+                  + Buy Bitcoin
+                </button>
+              </div>
+            </div>
           </div>
+          <h2>Order Book</h2>
         <div className="row m-t-30">
           <table className="table table-bordered">
             <thead>

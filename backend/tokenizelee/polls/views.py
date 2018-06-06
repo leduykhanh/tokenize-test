@@ -13,5 +13,5 @@ def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 
 def data(request):
-    data_list = Order.objects.all()
+    data_list = Order.objects.order_by('bid')
     return JsonResponse({'data':OrderSerializzer(data_list, many=True).data})
