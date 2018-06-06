@@ -11,17 +11,16 @@ export function* getData(action) {
 
   try {
     const options = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(action.payload),
+      method: 'GET',
+      // headers: {
+      //   'Accept': 'application/json',
+      //   'Content-Type': 'application/json'
+      // },
+      //body: JSON.stringify(action.payload),
     };
     const data = yield call(request, requestURL, options);
-    console.log(data)
 
-    yield put(dataLoaded(data));
+    yield put(dataLoaded(data.data));
   } catch (err) {
     yield put(dataLoadingError(err.response));
   }

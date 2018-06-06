@@ -11,13 +11,14 @@ import {
 
 const initialState = fromJS({});
 
-function loginReducer(state = initialState, action) {
+function homeReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_DATA_SUCCESS:
-      return state.set('data', action.payload);
+      console.log('action.payload', action.data);
+      return state.set('data', action.data);
     default:
       return state;
   }
 }
 
-export default loginReducer;
+export default homeReducer;

@@ -14,6 +14,8 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import PropTypes from 'prop-types';
+
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
@@ -23,6 +25,7 @@ import { loadData } from './actions';
 
 import { createStructuredSelector } from 'reselect';
 import makeSelectLogin from 'containers/Login/selectors';
+import makeSelectData from './selectors';
 import CryptoSelect from 'components/CryptoSelect';
 import Dropdowns from 'components/Dropdowns';
 
@@ -31,6 +34,7 @@ import Dropdowns from 'components/Dropdowns';
     this.props.dispatch(loadData());
   }
   render() {
+    console.log(this.props.data)
     return (
       <div>
         { /*<h2>{this.props.login.username}</h2> */}
@@ -51,13 +55,18 @@ import Dropdowns from 'components/Dropdowns';
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><Dropdowns /></td>
-              </tr>
+            {this.props.data.data && this.props.data.data.map(item => {
+              return (
+                <tr>
+                  <th scope="row">{item.sum}</th>
+                  <td>{item.total}</td>
+                  <td>{item.size}</td>
+                  <td>{item.bid}</td>
+                  <td><Dropdowns /></td>
+                </tr>
+              )
+            })}
+
             </tbody>
           </table>
         </div>
@@ -65,8 +74,13 @@ import Dropdowns from 'components/Dropdowns';
     );
   }
 }
+
+HomePage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
 const mapStateToProps = createStructuredSelector({
-  login: makeSelectLogin(),
+  // login: makeSelectLogin(),
+  data: makeSelectData(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -74,11 +88,14 @@ function mapDispatchToProps(dispatch) {
     dispatch,
   };
 }
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withReducer = injectReducer({ key: 'home', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
 
-export default compose(withConnect,withReducer,withSaga ) (HomePage);
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect, ) (HomePage);
 
 // export default HomePage;
