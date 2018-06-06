@@ -7,7 +7,7 @@ import request from 'utils/request';
 
 export function* getData(action) {
 
-  const requestURL = `http://localhost:8000/polls/data`;
+  const requestURL = `http://206.189.40.141:8000/polls/data`;
 
   try {
     const options = {
