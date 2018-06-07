@@ -14,7 +14,9 @@ class CryptoSelect extends React.PureComponent { // eslint-disable-line react/pr
         <div className="form-group row">
           <label for="inputPassword" className="col-sm-2 col-form-label">{this.props.label}</label>
           <div className="input-group col-sm-10">
-            <input type="text" className="form-control" id="validationDefaultUsername" placeholder="0.01" aria-describedby="inputGroupPrepend2" required />
+            <input
+            onChange={this.props.onChange}
+            type="number" className="form-control" id="validationDefaultUsername" placeholder="1" aria-describedby="inputGroupPrepend2" required />
             <div className="input-group-prepend">
               <span className="input-group-text" id="inputGroupPrepend2">{this.props.currency}</span>
             </div>

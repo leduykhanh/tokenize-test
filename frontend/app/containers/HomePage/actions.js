@@ -2,6 +2,8 @@ import {
   LOAD_DATA,
   LOAD_DATA_SUCCESS,
   LOAD_DATA_ERROR,
+  NEW_DATA,
+  NEW_DATA_SUCCESS,
 } from './constants';
 
 /**
@@ -13,6 +15,13 @@ export function loadData() {
   return {
     type: LOAD_DATA,
     payload: {}
+  };
+}
+
+export function addData(payload) {
+  return {
+    type: NEW_DATA,
+    payload
   };
 }
 
@@ -29,7 +38,12 @@ export function dataLoaded(data) {
     data,
   };
 }
-
+export function dataAdded(data) {
+  return {
+    type: NEW_DATA_SUCCESS,
+    data,
+  };
+}
 /**
  * Dispatched when loading the data fails
  *
