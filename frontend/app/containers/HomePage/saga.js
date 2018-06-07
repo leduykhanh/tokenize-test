@@ -4,8 +4,8 @@ import { dataLoaded, dataLoadingError, dataAdded } from 'containers/HomePage/act
 
 import request from 'utils/request';
 
-//const BASE_URL = 'http://206.189.40.141:8000';
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'http://206.189.40.141:8000';
+//const BASE_URL = 'http://127.0.0.1:8000';
 
 export function* getData(action) {
 
